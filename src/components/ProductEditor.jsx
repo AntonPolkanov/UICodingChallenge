@@ -29,7 +29,7 @@ class ProductEditor extends Component {
           <Col md={5}>
             <FormGroup>
               <Label for="name">Name</Label>
-              <Input type="text" name="name" id="name" placeholder="Name" value={this.product.name}/>
+              <Input type="text" name="name" id="name" placeholder="Name" value={this?.product?.name} onChange={(value) => this.onPropertyChange(value)}/>
             </FormGroup>
           </Col>
           <Col md={5}>
@@ -39,7 +39,7 @@ class ProductEditor extends Component {
                 <InputGroupAddon>
                   <InputGroupText>{this.product.price.base}</InputGroupText>
                 </InputGroupAddon>
-                <Input type="number" name="price" id="price" placeholder="Price" value={this.product.price.amount}/>
+                <Input type="number" name="price" id="price" placeholder="Price" value={this?.product?.price?.amount}/>
                 <InputGroupAddon>
                   <InputGroupText>.00</InputGroupText>
                 </InputGroupAddon>
@@ -49,14 +49,14 @@ class ProductEditor extends Component {
           <Col md={2}>
             <FormGroup>
               <Label for="id">Id</Label>
-              <Input type="number" name="Id" id="id" placeholder="Product Id" value={this.product.id}/>
+              <Input type="number" name="Id" id="id" placeholder="Product Id" value={this?.product?.id}/>
             </FormGroup>
           </Col>
         </Row>
         
         <FormGroup>
           <Label for="description">Description</Label>
-          <Input type="textarea" name="description" id="description" placeholder="Name" value={this.product.description}/>
+          <Input type="textarea" name="description" id="description" placeholder="Name" value={this?.product?.description}/>
         </FormGroup>
       </div>
     );
