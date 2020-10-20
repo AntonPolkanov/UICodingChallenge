@@ -4,8 +4,10 @@ import axios from 'axios'
 
 class Products extends Component{
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    const {history} = props;
+    this.history = history;
     this.state = {
       data: [],
       loading: true,
@@ -36,12 +38,16 @@ class Products extends Component{
     })
   }
 
-  static renderProductsTable(data) {
+  openProductDetails = (rowData) => {
+      this.history.push(`/productDetails/${rowData.id}`, rowData, {...this.props});
+  }
+
+  renderProductsTable(data) {
     return (
       <MaterialTable
         title="Available products"
+        data={data}
         columns={[
-          {title: 'Id', field: 'id'},
           {title: 'Name', field: 'name'},
           { 
             title: 'Price', 
@@ -55,20 +61,21 @@ class Products extends Component{
             render: rowData => rowData.price.base
           }
         ]}
-        data = {data}
+        onRowClick={(event, rowData, togglePanel) => this.openProductDetails(rowData)}
       >
       </MaterialTable>
     );
   }
-
+ 
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : Products.renderProductsTable(this.state.data)
+      : this.renderProductsTable(this.state.data)
 
     return (
       <div>
-        <h1>Products</h1>
+        <h2>Products</h2>
+        <br/>
         {
           !this.state.errorMessage
             ? contents

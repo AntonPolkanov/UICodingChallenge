@@ -7,6 +7,7 @@ import Layout from './components/Layout';
 import Home from './components/Home';
 import Products from './components/Products';
 import Profile from './components/Profile';
+import ProductDetails from './components/ProductDetails';
 
 class App extends Component {
 
@@ -25,6 +26,7 @@ class App extends Component {
           <Route exact path='/' render={props => <Home {...props}/>}/>
           <Route path='/products' render={props => <Products {...props}/>}/>
           <Route path='/profile' render={props => <Profile {...props}/>}/>
+          <Route path='/productDetails' render={props => <ProductDetails {...props}/>}/>
         </Layout>
       </AuthContext.Provider>
     );
