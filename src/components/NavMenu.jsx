@@ -30,9 +30,9 @@ class NavMenu extends Component {
               <Container>
                 <NavbarBrand>
                   <img
-                    src="https://baijiu-random.s3-ap-southeast-2.amazonaws.com/xyzicon.png"
+                    src="https://baijiu-random.s3-ap-southeast-2.amazonaws.com/xyzicon2.png"
                     alt="XYZ Clothing"
-                    width="45"
+                    width="60"
                     height="45"
                   />
                 </NavbarBrand>
