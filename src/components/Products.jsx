@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import MaterialTable from 'material-table'
 import axios from 'axios'
+import DeferredSpinner from './DeferredSpinner'
 
 class Products extends Component{
 
@@ -69,7 +70,7 @@ class Products extends Component{
  
   render() {
     let contents = this.state.loading
-      ? <p><em>Loading...</em></p>
+      ? <DeferredSpinner delay={250}/>
       : this.renderProductsTable(this.state.data)
 
     return (
