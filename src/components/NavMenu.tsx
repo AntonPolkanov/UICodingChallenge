@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './NavMenu.css';
 import AuthContext from "../auth/AuthContext";
 
-class NavMenu extends Component {
+class NavMenu extends Component<{}, {collapsed}> {
 
   constructor (props) {
     super(props);
@@ -24,7 +24,7 @@ class NavMenu extends Component {
   render () {
     return (
       <AuthContext.Consumer>
-        {auth => (
+        {(auth) => auth && (
           <header>
             <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
               <Container>

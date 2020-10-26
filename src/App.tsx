@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import './App.css';
 import Auth from './auth/Auth';
 import AuthContext from './auth/AuthContext';
-import {Route, withRouter} from 'react-router-dom';
+import {Route, withRouter, RouteComponentProps} from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './components/Home';
 import Products from './components/Products';
 import Profile from './components/Profile';
 import ProductDetails from './components/ProductDetails';
 
-class App extends Component {
+class App extends Component<RouteComponentProps, {auth}> {
 
   constructor(props) {
     super(props)

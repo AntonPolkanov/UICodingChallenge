@@ -3,8 +3,35 @@ import MaterialTable from 'material-table'
 import axios from 'axios'
 import DeferredSpinner from './DeferredSpinner'
 import {Dropdown, DropdownMenu, DropdownItem, DropdownToggle, UncontrolledAlert} from 'reactstrap'
+import {History} from 'history';
 
-class Products extends Component{
+type Price = {
+  amountDisplay: number
+  baseDisplay: string
+}
+
+type RowData = {
+  price: Price
+}
+
+interface IProductProps {
+  history: History
+}
+
+interface IProductsState {
+  productsData: any[],
+  currencyData: any[],
+  loadingProducts: boolean,
+  loadingCurrency: boolean,
+  errorMessageProducts: string,
+  errorMessageCurrency: string,
+  errorMessageCulculations: string,
+  dropDownOpen: boolean,
+  currentCurrency: string
+}
+
+class Products extends Component<IProductProps, IProductsState> {
+  history: History;
 
   constructor(props) {
     super(props);
@@ -80,12 +107,12 @@ class Products extends Component{
   }
 
   openProductDetails = (rowData) => {
-      this.history.push(`/productDetails/${rowData.id}`, rowData, {...this.props});
+      this.history.push(`/productDetails/${rowData.id}`, rowData);
   }
 
   renderProductsTable(data) {
     return (
-        <MaterialTable
+        <MaterialTable<RowData>
           title="Available products"
           data={data}
           columns={[
@@ -125,7 +152,7 @@ class Products extends Component{
             continue;
           }
           
-          let newExRate = Number(oldCurrency.rates[targetCurrency], 10);
+          let newExRate = oldCurrency.rates[targetCurrency] as number;
           if (isNaN(newExRate)) {
             this.setState({
               errorMessageCulculations: `Cannot convert new exachange rate to number for id=${p.id}`

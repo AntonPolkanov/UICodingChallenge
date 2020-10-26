@@ -5,8 +5,15 @@ import { Form, UncontrolledAlert} from 'reactstrap'
 import DeferredSpinner from './DeferredSpinner'
 import ProductEditor from './ProductEditor'
 
-class ProductDetails extends Component {
-  
+interface IProductDetailsState {
+  data: any[],
+  loading: boolean,
+  errorMessage: string,
+}
+
+class ProductDetails extends Component<{},IProductDetailsState> {
+  product: any;
+
   constructor(props) {
     super(props);
     this.product = props.location.state;
@@ -22,14 +29,14 @@ class ProductDetails extends Component {
   }
 
   async fetchRelatedProducts() {
-    let urls = [];
+    let urls: string[] = [];
     for (let p of this.product.relatedProducts) {
       urls.push(`${process.env.REACT_APP_API_URL}/products/${p}`)
     }
     let promiseArray = urls.map(url => axios(url));
     const data = await axios.all(promiseArray);
     let temp = data.map(r => r.data);
-    this.state = this.setState({
+    this.setState({
       data: temp,
       loading: false
     });

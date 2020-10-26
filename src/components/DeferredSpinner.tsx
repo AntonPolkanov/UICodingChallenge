@@ -1,7 +1,13 @@
 import React, {Component} from 'react'
 import {Spinner, Container, Row, Col} from 'reactstrap'
 
-class DeferredSpinner extends Component {
+interface IDeferredSpinnerProps {
+  delay: number
+}
+
+class DeferredSpinner extends Component<IDeferredSpinnerProps, {showSpinner}> {
+  delay: number;
+  timer!: NodeJS.Timeout;
 
   constructor(props) {
     super(props);

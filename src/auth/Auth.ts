@@ -1,11 +1,12 @@
-
+import {History} from 'history'
 
 const REDIRECT_ON_LOGIN = "redirect_on_login";
 const REDIRECT_ON_LOGOUT = "redirect_on_logout";
 
 class Auth {
+  history: History;
 
-  constructor(history) {
+  constructor(history: History) {
     this.history = history;
   }
 
@@ -24,13 +25,13 @@ class Auth {
     this.setSession();
     const redirectLocation = localStorage.getItem(REDIRECT_ON_LOGIN) === null
       ? '/'
-      : JSON.parse(localStorage.getItem(REDIRECT_ON_LOGIN));
+      : JSON.parse(localStorage.getItem(REDIRECT_ON_LOGIN) as string);
     this.history.push(redirectLocation);
     localStorage.removeItem(REDIRECT_ON_LOGIN);
   }
 
   setSession = () => {
-    localStorage.setItem("isLoggedIn", true);
+    localStorage.setItem("isLoggedIn", "true");
   }
 
   clearSession = () => {
@@ -44,7 +45,7 @@ class Auth {
 
   handleLogout = () => {
     this.clearSession();
-    this.history.push(JSON.parse(localStorage.getItem(REDIRECT_ON_LOGOUT)));
+    this.history.push(JSON.parse(localStorage.getItem(REDIRECT_ON_LOGOUT) as string));
     localStorage.removeItem(REDIRECT_ON_LOGOUT);
   }
 }

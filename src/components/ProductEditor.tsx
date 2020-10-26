@@ -1,8 +1,16 @@
 import React, {Component} from 'react'
 import {Row, Col, Button, FormGroup, Label, Input, 
   InputGroup, InputGroupAddon, InputGroupText} from 'reactstrap'
+import {History} from 'history'
+
+interface IProductEditorProps {
+  product: any
+}
  
-class ProductEditor extends Component {
+class ProductEditor extends Component<IProductEditorProps> {
+  history: History;
+  product: any;
+  backClick: any;
 
   constructor(props) {
     super(props);
@@ -29,18 +37,18 @@ class ProductEditor extends Component {
           <Col md={5}>
             <FormGroup>
               <Label for="name">Name</Label>
-              <Input type="text" name="name" id="name" placeholder="Name" value={this?.product?.name} onChange={(value) => this.onPropertyChange(value)}/>
+              <Input type="text" name="name" id="name" placeholder="Name" value={this?.product?.name}/>
             </FormGroup>
           </Col>
           <Col md={5}>
             <FormGroup>
               <Label for="price">Price</Label>
               <InputGroup>
-                <InputGroupAddon>
+                <InputGroupAddon addonType="prepend">
                   <InputGroupText>{this.product.price.base}</InputGroupText>
                 </InputGroupAddon>
                 <Input type="number" name="price" id="price" placeholder="Price" value={this?.product?.price?.amount}/>
-                <InputGroupAddon>
+                <InputGroupAddon addonType="append">
                   <InputGroupText>.00</InputGroupText>
                 </InputGroupAddon>
               </InputGroup>

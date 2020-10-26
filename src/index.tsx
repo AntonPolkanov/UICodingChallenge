@@ -6,8 +6,8 @@ import App from './App';
 import {BrowserRouter} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
-const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
-const rootElement = document.getElementById('root');
+const baseUrl : string = document.getElementsByTagName('base')[0].getAttribute('href') as string;
+const rootElement = document.getElementById('root') as HTMLElement;
 
 ReactDOM.render(
   <React.StrictMode>
